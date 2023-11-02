@@ -1,0 +1,37 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Wizard's Gauntlet: Scaled Adventure"
+config/features=PackedStringArray("4.1", "GL Compatibility")
+run/max_fps=244
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="res://Logo288.png"
+boot_splash/fullsize=false
+
+[display]
+
+window/size/viewport_width=720
+window/size/viewport_height=1280
+window/size/mode=2
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
+
+[rendering]
+
+textures/canvas_textures/default_texture_repeat=1
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
