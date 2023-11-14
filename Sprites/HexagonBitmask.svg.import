@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://bigmn2qp7b0f6"
+path="res://.godot/imported/HexagonBitmask.svg-ae546022e919548d51cef75eddc62035.res"
+
+[deps]
+
+source_file="res://Sprites/HexagonBitmask.svg"
+dest_files=["res://.godot/imported/HexagonBitmask.svg-ae546022e919548d51cef75eddc62035.res"]
+
+[params]
+
+create_from=0
+threshold=0.9

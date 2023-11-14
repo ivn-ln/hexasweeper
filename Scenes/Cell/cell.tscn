@@ -1,0 +1,199 @@
+[gd_scene load_steps=18 format=3 uid="uid://b2p5jpkvngdqr"]
+
+[ext_resource type="Script" path="res://Scenes/Cell/cell.gd" id="1_aawky"]
+[ext_resource type="Texture2D" uid="uid://ch5gcrt1u8nq5" path="res://Sprites/Hexagon.svg" id="1_u62ag"]
+[ext_resource type="Texture2D" uid="uid://dqv0mmk04f6gf" path="res://Sprites/HexagonHover.svg" id="2_h7bnh"]
+[ext_resource type="BitMap" uid="uid://bigmn2qp7b0f6" path="res://Sprites/HexagonBitmask.svg" id="3_3lbnh"]
+[ext_resource type="Texture2D" uid="uid://dmkmajlu18daj" path="res://Sprites/Mine.svg" id="5_7psmb"]
+[ext_resource type="Texture2D" uid="uid://bv4yypysnkno5" path="res://Sprites/Flag.svg" id="6_3eisg"]
+[ext_resource type="Texture2D" uid="uid://icc4ux5t0os5" path="res://Sprites/flame_04.png" id="7_iqb4e"]
+
+[sub_resource type="Gradient" id="Gradient_a6brt"]
+offsets = PackedFloat32Array(0, 0.194118, 0.641176, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.4555, 0.00999999, 1, 0, 0, 0, 0.406313, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ueehr"]
+gradient = SubResource("Gradient_a6brt")
+
+[sub_resource type="Curve" id="Curve_tojx7"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 2.10526), 0.0, 0.0, 0, 0, Vector2(0.0754717, -6.3158), 0.0, 0.0, 0, 0, Vector2(0.16442, 98.9474), 0.0, 0.0, 0, 0, Vector2(1, -18.9474), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_jxtoh"]
+curve = SubResource("Curve_tojx7")
+
+[sub_resource type="Curve" id="Curve_dujkd"]
+_data = [Vector2(0, 0.48421), 0.0, 0.0, 0, 0, Vector2(0.347709, 1), 0.0, 0.0, 0, 0, Vector2(0.878706, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_1usmv"]
+curve = SubResource("Curve_dujkd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_luwxc"]
+resource_local_to_scene = true
+emission_shape = 1
+emission_sphere_radius = 69.0
+particle_flag_align_y = true
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_curve = SubResource("CurveTexture_jxtoh")
+scale_min = 2.0
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_1usmv")
+color_ramp = SubResource("GradientTexture1D_ueehr")
+
+[sub_resource type="Animation" id="Animation_xmsd4"]
+resource_name = "FlagProgress"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureProgressBar:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 100.0]
+}
+
+[sub_resource type="Animation" id="Animation_3ty18"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_deeas"]
+_data = {
+"FlagProgress": SubResource("Animation_xmsd4"),
+"RESET": SubResource("Animation_3ty18")
+}
+
+[node name="Cell" type="TextureButton"]
+offset_right = 128.0
+offset_bottom = 128.0
+mouse_filter = 1
+button_mask = 3
+texture_normal = ExtResource("2_h7bnh")
+texture_click_mask = ExtResource("3_3lbnh")
+stretch_mode = 1
+script = ExtResource("1_aawky")
+metadata/_edit_group_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.67451)
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 33.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_u62ag")
+expand_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+
+[node name="Treasure" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 24.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_7psmb")
+expand_mode = 1
+
+[node name="Flag" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_3eisg")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+visible = false
+self_modulate = Color(0.277528, 0.277528, 0.277528, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+
+[node name="Treasures" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = 5
+position = Vector2(69, 69)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_luwxc")
+texture = ExtResource("7_iqb4e")
+lifetime = 1.5
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.95
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 363.0
+offset_bottom = 364.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.27, 0.27)
+fill_mode = 3
+texture_progress = ExtResource("6_3eisg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_deeas")
+}
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
