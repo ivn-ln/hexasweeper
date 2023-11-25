@@ -1,12 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://b2p5jpkvngdqr"]
+[gd_scene load_steps=19 format=3 uid="uid://b2p5jpkvngdqr"]
 
 [ext_resource type="Script" path="res://Scenes/Cell/cell.gd" id="1_aawky"]
-[ext_resource type="Texture2D" uid="uid://ch5gcrt1u8nq5" path="res://Sprites/Hexagon.svg" id="1_u62ag"]
 [ext_resource type="Texture2D" uid="uid://dqv0mmk04f6gf" path="res://Sprites/HexagonHover.svg" id="2_h7bnh"]
 [ext_resource type="BitMap" uid="uid://bigmn2qp7b0f6" path="res://Sprites/HexagonBitmask.svg" id="3_3lbnh"]
-[ext_resource type="Texture2D" uid="uid://dmkmajlu18daj" path="res://Sprites/Mine.svg" id="5_7psmb"]
-[ext_resource type="Texture2D" uid="uid://bv4yypysnkno5" path="res://Sprites/Flag.svg" id="6_3eisg"]
+[ext_resource type="Texture2D" uid="uid://dmkmajlu18daj" path="res://Sprites/mine.svg" id="5_flf8l"]
+[ext_resource type="FontFile" uid="uid://c7qlqvlj4g7ts" path="res://Fonts/Varela-ynyq.ttf" id="5_yijgg"]
 [ext_resource type="Texture2D" uid="uid://icc4ux5t0os5" path="res://Sprites/flame_04.png" id="7_iqb4e"]
+[ext_resource type="Texture2D" uid="uid://b0rn5drtulvqt" path="res://Sprites/flag.svg" id="7_lmjmm"]
+[ext_resource type="Texture2D" uid="uid://d104fmm6nppn" path="res://Sprites/hexagon.svg" id="8_5784w"]
+[ext_resource type="AudioStream" uid="uid://btli8aeprjwmn" path="res://Audio/bong_001.ogg" id="9_pv2o4"]
+[ext_resource type="AudioStream" uid="uid://chr5a7h4865fa" path="res://Audio/drop_002.ogg" id="10_erfel"]
+[ext_resource type="AudioStream" uid="uid://r5h1ljtcpah8" path="res://Audio/error_005.ogg" id="11_bcteg"]
 
 [sub_resource type="Gradient" id="Gradient_a6brt"]
 offsets = PackedFloat32Array(0, 0.194118, 0.641176, 1)
@@ -50,120 +54,152 @@ scale_max = 6.0
 scale_curve = SubResource("CurveTexture_1usmv")
 color_ramp = SubResource("GradientTexture1D_ueehr")
 
-[sub_resource type="Animation" id="Animation_xmsd4"]
-resource_name = "FlagProgress"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureProgressBar:value")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 100.0]
-}
-
-[sub_resource type="Animation" id="Animation_3ty18"]
-length = 0.001
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_deeas"]
-_data = {
-"FlagProgress": SubResource("Animation_xmsd4"),
-"RESET": SubResource("Animation_3ty18")
-}
-
 [node name="Cell" type="TextureButton"]
-offset_right = 128.0
-offset_bottom = 128.0
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 138.0
+offset_bottom = 138.0
 mouse_filter = 1
 button_mask = 3
 texture_normal = ExtResource("2_h7bnh")
 texture_click_mask = ExtResource("3_3lbnh")
 stretch_mode = 1
 script = ExtResource("1_aawky")
+tile_color_revealed = Color(0.556863, 1, 0.74902, 1)
 metadata/_edit_group_ = true
 
-[node name="TextureRect2" type="TextureRect" parent="."]
-modulate = Color(0, 0, 0, 0.67451)
-z_index = -1
+[node name="MainPivot" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 33.0
-offset_bottom = 33.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_u62ag")
-expand_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 2
-
-[node name="Treasure" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 24.0
-offset_right = -22.0
-offset_bottom = -22.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_7psmb")
-expand_mode = 1
-
-[node name="Flag" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_3eisg")
-expand_mode = 1
-
-[node name="TextureRect3" type="TextureRect" parent="."]
-visible = false
-self_modulate = Color(0.277528, 0.277528, 0.277528, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 2
-
-[node name="Treasures" type="Label" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = -5.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 16
+
+[node name="HexagonTextureRevealed" type="TextureRect" parent="MainPivot"]
+self_modulate = Color(0.556863, 1, 0.74902, 1)
+layout_mode = 2
+offset_left = -56.0
+offset_top = -56.0
+offset_right = 280.0
+offset_bottom = 280.0
+grow_horizontal = 2
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("8_5784w")
+
+[node name="CenterContainer" type="CenterContainer" parent="MainPivot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+use_top_left = true
+
+[node name="MineLabel" type="Label" parent="MainPivot/CenterContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.270588, 0.270588, 0.270588, 1)
+theme_override_colors/font_outline_color = Color(0.270588, 0.270588, 0.270588, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_yijgg")
 theme_override_font_sizes/font_size = 64
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Pivot" type="Control" parent="MainPivot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="HexagonTexture" type="TextureRect" parent="MainPivot/Pivot"]
+self_modulate = Color(0, 0.811765, 0.498039, 1)
+layout_mode = 2
+offset_left = -56.0
+offset_top = -56.0
+offset_right = 280.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("8_5784w")
+
+[node name="PivotMine" type="Control" parent="MainPivot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+mouse_filter = 1
+
+[node name="Treasure" type="TextureRect" parent="MainPivot/PivotMine"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_flf8l")
+expand_mode = 1
+
+[node name="PivotFlag" type="Control" parent="MainPivot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+mouse_filter = 1
+
+[node name="Flag" type="TextureRect" parent="MainPivot/PivotFlag"]
+z_index = 3
+layout_mode = 2
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_lmjmm")
+expand_mode = 1
+
+[node name="Mana" type="Polygon2D" parent="MainPivot"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-64, -56)
+color = Color(0, 0, 0.486275, 0.490196)
+polygon = PackedVector2Array(64, 88, 32, 64, 64, 24, 96, 64)
+
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-z_index = 5
+z_index = 1
 position = Vector2(69, 69)
 emitting = false
 amount = 50
@@ -174,26 +210,25 @@ one_shot = true
 speed_scale = 2.0
 explosiveness = 0.95
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 2.0
-offset_right = 363.0
-offset_bottom = 364.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.27, 0.27)
-fill_mode = 3
-texture_progress = ExtResource("6_3eisg")
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_deeas")
-}
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_pv2o4")
+volume_db = -20.0
 
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_erfel")
+volume_db = -20.0
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_bcteg")
+volume_db = -20.0
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

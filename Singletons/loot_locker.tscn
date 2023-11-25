@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqd0yl411vu5i"]
+
+[ext_resource type="Script" path="res://Singletons/loot_locker.gd" id="1_vo1p8"]
+
+[node name="LootLocker" type="Node"]
+script = ExtResource("1_vo1p8")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]

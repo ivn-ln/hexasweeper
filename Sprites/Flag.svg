@@ -1,13 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient gradientUnits="userSpaceOnUse" x1="300.052" y1="173.535" x2="300.052" y2="328.908" id="gradient-1" gradientTransform="matrix(0.046738, -0.998907, 1.287226, 0.081764, -37.402598, 526.615275)">
-      <stop offset="0" style="stop-color: rgb(255, 0, 0);"/>
-      <stop offset="1" style="stop-color: rgb(255, 149, 149);"/>
-    </linearGradient>
-  </defs>
-  <g transform="matrix(1, 0, 0, 1, -46.78043886364816, -54.95774623625709)">
-    <path style="stroke: rgb(0, 0, 0); stroke-width: 10px; stroke-linejoin: round; fill: rgb(60, 60, 60);" d="M 199.949 437.943 L 264.732 437.943 L 241.636 418.521 L 240.509 253.784 L 220.229 254.131 L 219.103 420.256 L 199.949 437.943 Z"/>
-    <path style="stroke: rgb(0, 0, 0); stroke-width: 10px; stroke-linejoin: round; fill: url('#gradient-1');" d="M 200 200 C 198.153 194.644 246.478 143.227 300 200 C 346.678 246.965 403.504 211.591 400 200 L 400 300 C 400.308 300.292 355.805 364.897 300 300 C 248.167 242.087 199.982 299.936 200 300 L 200 200 Z"/>
-  </g>
-</svg>
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M 8 2 L 13 5 L 8 8 Z" fill="#fff" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="8" y1="12.5" x2="8" y2="2" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="14.5" x2="4" y2="14.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>

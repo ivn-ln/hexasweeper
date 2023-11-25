@@ -1,0 +1,265 @@
+[gd_scene load_steps=9 format=3 uid="uid://dkjh1mitk7ydc"]
+
+[ext_resource type="Script" path="res://GUI/Menu/menu.gd" id="1_4ghmd"]
+[ext_resource type="PackedScene" uid="uid://chkhypr8v0lao" path="res://GUI/Pause/pause.tscn" id="1_d5idw"]
+[ext_resource type="Texture2D" uid="uid://d104fmm6nppn" path="res://Sprites/hexagon.svg" id="2_fem2o"]
+[ext_resource type="AudioStream" uid="uid://btb0dvixf2uti" path="res://Audio/completed.wav" id="4_5r0e8"]
+[ext_resource type="Texture2D" uid="uid://dmkmajlu18daj" path="res://Sprites/mine.svg" id="5_8gnld"]
+[ext_resource type="AudioStream" uid="uid://btli8aeprjwmn" path="res://Audio/bong_001.ogg" id="6_we03u"]
+[ext_resource type="PackedScene" uid="uid://eo0h525y6to8" path="res://GUI/Leaderboard/leaderboard.tscn" id="7_l1sex"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jc6wg"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Menu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4ghmd")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jc6wg")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "HEXA
+SWEEPER"
+horizontal_alignment = 1
+
+[node name="HowToButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0.572549, 0.65098, 1)
+theme_override_colors/font_outline_color = Color(0, 0.574167, 0.65, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 64
+text = "How to play?"
+flat = true
+
+[node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer"]
+self_modulate = Color(0.2, 1, 0.466667, 1)
+layout_mode = 2
+focus_mode = 0
+disabled = true
+icon = ExtResource("2_fem2o")
+flat = true
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="MarginContainer/VBoxContainer/CenterContainer/Play"]
+polygon = PackedVector2Array(120, 96, 256, 172, 120, 248)
+
+[node name="Spacer3" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Leaderboards" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
+modulate = Color(0.45098, 1, 0.478431, 1)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 64
+text = "Leaderboard"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="DiffDec" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 64
+text = "<"
+
+[node name="Difficulty" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "Difficulty"
+horizontal_alignment = 1
+
+[node name="DiffInc" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+focus_mode = 0
+theme_override_font_sizes/font_size = 64
+text = ">"
+
+[node name="Spacer4" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Pause" parent="." instance=ExtResource("1_d5idw")]
+layout_mode = 1
+offset_left = 720.0
+offset_right = 720.0
+
+[node name="Back" parent="Pause" index="1"]
+offset_left = 0.0
+offset_right = 55.0
+
+[node name="HBoxContainer" parent="Pause/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
+visible = false
+
+[node name="Spacer" parent="Pause/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="3"]
+visible = false
+
+[node name="HSeparator" parent="Pause/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" index="4"]
+visible = false
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5r0e8")
+volume_db = -10.0
+
+[node name="HowTo" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="HowTo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HowTo/CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HowTo/CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HowTo/CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HowTo/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HowTo/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "How to play?"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="HowTo/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="HowTo/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "Reveal the board and
+avoid mines
+Numbers indicate mines
+amount around a tile
+Left click
+to reveal a tile
+Right click or hold
+ to set a flag
+Scrollwheel to
+ control camera"
+horizontal_alignment = 1
+
+[node name="Hide" type="Button" parent="HowTo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 261.0
+offset_top = -480.0
+offset_right = 288.0
+offset_bottom = -399.0
+grow_horizontal = 0
+focus_mode = 0
+text = "X"
+flat = true
+
+[node name="Mine" type="TextureRect" parent="HowTo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 144.0
+offset_top = -234.0
+offset_right = 218.667
+offset_bottom = -159.333
+grow_horizontal = 0
+texture = ExtResource("5_8gnld")
+expand_mode = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_we03u")
+volume_db = -20.0
+
+[node name="Leaders" parent="." instance=ExtResource("7_l1sex")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HowToButton" to="." method="_on_how_to_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/Leaderboards" to="." method="_on_leaderboards_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/DiffDec" to="." method="_on_diff_dec_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/DiffInc" to="." method="_on_diff_inc_pressed"]
+[connection signal="pressed" from="HowTo/Hide" to="." method="_on_hide_pressed"]
+
+[editable path="Pause"]

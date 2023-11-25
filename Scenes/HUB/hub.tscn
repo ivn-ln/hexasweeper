@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7lfv4txkw2ww"]
+
+[ext_resource type="Script" path="res://Scenes/HUB/hub.gd" id="1_denid"]
+[ext_resource type="PackedScene" uid="uid://dkjh1mitk7ydc" path="res://GUI/Menu/menu.tscn" id="2_k1m0k"]
+
+[node name="HUB" type="Node"]
+process_mode = 3
+script = ExtResource("1_denid")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Menu" parent="CanvasLayer" instance=ExtResource("2_k1m0k")]

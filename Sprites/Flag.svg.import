@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv4yypysnkno5"
-path="res://.godot/imported/Flag.svg-ded0b39ec315751867658e7d9e150241.ctex"
+uid="uid://b0rn5drtulvqt"
+path="res://.godot/imported/flag.svg-c6c9cdb7adeea27482405891485a09a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Flag.svg"
-dest_files=["res://.godot/imported/Flag.svg-ded0b39ec315751867658e7d9e150241.ctex"]
+source_file="res://Sprites/flag.svg"
+dest_files=["res://.godot/imported/flag.svg-c6c9cdb7adeea27482405891485a09a9.ctex"]
 
 [params]
 
@@ -32,6 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
+svg/scale=21.0
 editor/scale_with_editor_scale=false
 editor/convert_colors_with_editor_theme=false

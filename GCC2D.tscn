@@ -1,9 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://ds2tnuohc3nm3"]
 
-[ext_resource path="res://GCC2D.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://GCC2D.gd" id="1"]
 
 [node name="GCC2D" type="Camera2D"]
-ignore_rotation =true # reversed "rotating" for Camera2D
-current = true
-script = ExtResource( 1 )
-movement_gesture = 1
+script = ExtResource("1")
