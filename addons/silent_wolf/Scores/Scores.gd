@@ -376,6 +376,8 @@ func translate_score_fields_in_array(scores: Array) -> Array:
 
 func translate_score_fields(score: Dictionary) -> Dictionary:
 	var translated_score = {}
+	if score.keys().size() == 0:
+		return translated_score
 	translated_score["score_id"] = score["sid"]
 	translated_score["score"] = score["s"]
 	translated_score["player_name"] = score["pn"]

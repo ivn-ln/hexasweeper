@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://cnft024lcsrq"]
+[gd_resource type="Theme" load_steps=16 format=3 uid="uid://cnft024lcsrq"]
 
 [ext_resource type="FontFile" uid="uid://biruwhwyv1g4d" path="res://Fonts/InfynyteBody-6ARg.otf" id="1_dml2i"]
 [ext_resource type="Texture2D" uid="uid://c3d5esirgnv0y" path="res://Sprites/SliderOn.png" id="2_rsqqe"]
@@ -55,6 +55,46 @@ corner_radius_bottom_left = 16
 shadow_size = 8
 shadow_offset = Vector2(0, 8)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtbak"]
+bg_color = Color(0.282353, 0.282353, 0.282353, 1)
+border_width_left = 16
+border_width_right = 16
+border_color = Color(0.281187, 0.281187, 0.281187, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5qkfl"]
+bg_color = Color(0.670588, 0.670588, 0.670588, 1)
+border_width_left = 16
+border_width_right = 16
+border_color = Color(0.670689, 0.67069, 0.670689, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8f5pe"]
+bg_color = Color(0.501961, 0.501961, 0.501961, 1)
+border_width_left = 16
+border_width_right = 16
+border_color = Color(0.501406, 0.501407, 0.501406, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4usoj"]
+bg_color = Color(0.329412, 0.329412, 0.329412, 1)
+border_width_left = 16
+border_width_right = 16
+border_color = Color(0.329158, 0.329158, 0.329158, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_j3f5m"]
 grow_begin = 4.0
 grow_end = 4.0
@@ -87,4 +127,9 @@ MarginContainer/constants/margin_right = 32
 MarginContainer/constants/margin_top = 32
 Panel/styles/panel = SubResource("StyleBoxFlat_6tt6i")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_seyo1")
+TabBar/font_sizes/font_size = 64
+TabBar/styles/tab_disabled = SubResource("StyleBoxFlat_rtbak")
+TabBar/styles/tab_hovered = SubResource("StyleBoxFlat_5qkfl")
+TabBar/styles/tab_selected = SubResource("StyleBoxFlat_8f5pe")
+TabBar/styles/tab_unselected = SubResource("StyleBoxFlat_4usoj")
 VSeparator/styles/separator = SubResource("StyleBoxLine_j3f5m")

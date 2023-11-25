@@ -1,6 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://eo0h525y6to8"]
+[gd_scene load_steps=6 format=3 uid="uid://eo0h525y6to8"]
 
 [ext_resource type="Script" path="res://GUI/Leaderboard/leaderboard.gd" id="1_rdimv"]
+[ext_resource type="Texture2D" uid="uid://d104fmm6nppn" path="res://Sprites/hexagon.svg" id="2_xdxwv"]
+
+[sub_resource type="Animation" id="Animation_46wjv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_6kqq8"]
+resource_name = "load_spin"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p2vun"]
+_data = {
+"RESET": SubResource("Animation_46wjv"),
+"load_spin": SubResource("Animation_6kqq8")
+}
 
 [node name="Leaders" type="Control"]
 layout_mode = 3
@@ -44,6 +82,20 @@ text = "LEADERS"
 horizontal_alignment = 1
 
 [node name="Spacer" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="TabBar" type="TabBar" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+tab_alignment = 1
+tab_count = 3
+tab_0/title = "Easy"
+tab_1/title = "Medium"
+tab_2/title = "Hard"
+
+[node name="Spacer2" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
@@ -108,4 +160,38 @@ focus_mode = 0
 text = "X"
 flat = true
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 520.0
+offset_bottom = 520.0
+grow_horizontal = 2
+
+[node name="Hexagon" type="TextureRect" parent="Control"]
+modulate = Color(0, 0.811765, 0.498039, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.9)
+texture = ExtResource("2_xdxwv")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "load_spin"
+libraries = {
+"": SubResource("AnimationLibrary_p2vun")
+}
+
+[connection signal="tab_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabBar" to="." method="_on_tab_bar_tab_changed"]
 [connection signal="pressed" from="Hide" to="." method="_on_hide_pressed"]

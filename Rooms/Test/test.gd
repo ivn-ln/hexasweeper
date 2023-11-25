@@ -93,8 +93,8 @@ func _process(delta):
 	$CanvasLayer/Mines.visible = Globals.show_mines
 	$CanvasLayer/Timer.visible = Globals.show_timer
 	inner_timer += delta
-	if Input.is_action_just_pressed("ui_accept"):
-		grid_update_treasure_values(cells_array)
+	#if Input.is_action_just_pressed("ui_accept"):
+	#	grid_update_treasure_values(cells_array)
 	if Input.is_action_just_pressed("Debug"):
 		Globals.DEBUG = not Globals.DEBUG
 		$CanvasLayer/FPS.visible = Globals.DEBUG
@@ -382,6 +382,7 @@ func reset():
 	handling_input = true
 	$CanvasLayer/Restart.show()
 	$CanvasLayer/PauseButton.show()
+	$CanvasLayer/Win/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Leaders.disabled = false
 	$CanvasLayer/GameOver/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Restart.disabled = false
 	$CanvasLayer/Win/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Restart.disabled = false
 	$CanvasLayer/Restart.disabled = false
@@ -473,4 +474,14 @@ func _on_leaders_pressed():
 
 func _on_submit_score_score_submitted():
 	$CanvasLayer/Leaders.show()
-	$CanvasLayer/Leaders.update_scores()
+	$CanvasLayer/Win/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Leaders.disabled = true
+	var table
+	match Globals.current_difficulty:
+		'Easy':
+			$CanvasLayer/Leaders.update_scores('main')
+			return
+		'Medium':
+			table = 'normal'
+		'Hard':
+			table = 'hard'
+	$CanvasLayer/Leaders.update_scores(table, true)

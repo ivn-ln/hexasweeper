@@ -18,6 +18,10 @@ boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://Sprites/Logo288.png"
 boot_splash/fullsize=false
 
+[audio]
+
+buses/channel_disable_time=5.0
+
 [autoload]
 
 Globals="*res://Singletons/globals.gd"

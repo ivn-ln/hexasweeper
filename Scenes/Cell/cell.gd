@@ -49,6 +49,8 @@ func _process(delta):
 		$AudioStreamPlayer4.volume_db = -90
 	else:
 		$AudioStreamPlayer.volume_db = -20
+		if OS.get_name() == 'Android':
+			$AudioStreamPlayer.volume_db = 0
 		$AudioStreamPlayer2.volume_db = -20
 		$AudioStreamPlayer4.volume_db = -20
 	$GPUParticles2D.process_material.scale_max = scale.x * 6 * 1.5
