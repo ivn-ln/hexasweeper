@@ -1,0 +1,374 @@
+[gd_scene load_steps=20 format=3 uid="uid://k4go2sxs84ag"]
+
+[ext_resource type="Script" path="res://GUI/Tutorial/Tutorial.gd" id="1_ew4vj"]
+[ext_resource type="Texture2D" uid="uid://dmkmajlu18daj" path="res://Sprites/mine.svg" id="1_qdyi2"]
+[ext_resource type="FontFile" uid="uid://bljf7fxgu7tau" path="res://Fonts/Friend.otf" id="2_22o4q"]
+[ext_resource type="Texture2D" uid="uid://b0rn5drtulvqt" path="res://Sprites/flag.svg" id="3_7it4k"]
+[ext_resource type="Texture2D" uid="uid://bdnvw5pri7iug" path="res://Sprites/skull.png" id="4_54elg"]
+[ext_resource type="Texture2D" uid="uid://d1xcb72b8cm2i" path="res://Sprites/1.png" id="4_ouk0t"]
+[ext_resource type="Texture2D" uid="uid://cs44triso47sp" path="res://Sprites/2.png" id="5_riun0"]
+[ext_resource type="Texture2D" uid="uid://d38d6tdwdowep" path="res://Sprites/confetti.png" id="6_0508e"]
+[ext_resource type="Texture2D" uid="uid://cjb24js2us5jv" path="res://Sprites/8.png" id="7_4fto0"]
+[ext_resource type="Texture2D" uid="uid://df5uavghxuoko" path="res://Sprites/5.png" id="8_gsq0q"]
+[ext_resource type="Texture2D" uid="uid://bk4hw46n0vwk2" path="res://Sprites/6.png" id="9_kwk23"]
+[ext_resource type="Texture2D" uid="uid://cky7j4ifqgsl" path="res://Sprites/7.png" id="10_kc65w"]
+[ext_resource type="AudioStream" uid="uid://btli8aeprjwmn" path="res://Audio/bong_001.ogg" id="12_e1c41"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_6i88u"]
+frames = 2
+frame_0/texture = ExtResource("4_ouk0t")
+frame_1/texture = ExtResource("5_riun0")
+frame_1/duration = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vwph4"]
+load_path = "res://.godot/imported/1.png-7a7958060d64b2f4d5a9a71efcd83e83.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bbcpy"]
+load_path = "res://.godot/imported/3.png-3f492138ff769a43e13e838396995083.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wghlr"]
+load_path = "res://.godot/imported/4.png-47625304fc9fb2f1a9d8aae35478e6e6.ctex"
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_46ftr"]
+frames = 3
+frame_0/texture = SubResource("CompressedTexture2D_vwph4")
+frame_1/texture = SubResource("CompressedTexture2D_bbcpy")
+frame_1/duration = 1.0
+frame_2/texture = SubResource("CompressedTexture2D_wghlr")
+frame_2/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_voe5m"]
+frames = 3
+frame_0/texture = ExtResource("8_gsq0q")
+frame_1/texture = ExtResource("9_kwk23")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("10_kc65w")
+frame_2/duration = 1.0
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ew4vj")
+
+[node name="Control2" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 96
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 96
+theme_override_constants/margin_bottom = 128
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+modulate = Color(0, 0.811765, 0.498039, 1)
+layout_mode = 2
+
+[node name="1" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/1/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "Mines kill you"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control4" type="Control" parent="MarginContainer/1/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/1/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/1/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = 64.0
+grow_vertical = 2
+texture = ExtResource("1_qdyi2")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="MarginContainer/1/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -81.5
+offset_right = 35.0
+offset_bottom = 81.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_22o4q")
+theme_override_font_sizes/font_size = 128
+text = "="
+
+[node name="Label2" type="TextureRect" parent="MarginContainer/1/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -62.5
+offset_bottom = 62.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("4_54elg")
+
+[node name="Control3" type="Control" parent="MarginContainer/1/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/1/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "Flag mines"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control5" type="Control" parent="MarginContainer/1/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="MarginContainer/1/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/1/VBoxContainer/Control2"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_qdyi2")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="MarginContainer/1/VBoxContainer/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -81.5
+offset_right = 35.0
+offset_bottom = 81.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_22o4q")
+theme_override_font_sizes/font_size = 128
+text = "=>"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/1/VBoxContainer/Control2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = 64.0
+grow_vertical = 2
+texture = ExtResource("3_7it4k")
+expand_mode = 1
+
+[node name="Control8" type="Control" parent="MarginContainer/1/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="MarginContainer/1/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "Clear all to win"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control7" type="Control" parent="MarginContainer/1/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Control6" type="Control" parent="MarginContainer/1/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/1/VBoxContainer/Control6"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -48.0
+offset_right = 96.0
+offset_bottom = 48.0
+grow_vertical = 2
+texture = ExtResource("1_qdyi2")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/1/VBoxContainer/Control6"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -48.0
+offset_bottom = 48.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("6_0508e")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="MarginContainer/1/VBoxContainer/Control6"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -64.0
+offset_right = 113.0
+offset_bottom = 99.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_22o4q")
+theme_override_font_sizes/font_size = 96
+text = "=0 =>"
+
+[node name="2" type="MarginContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/2/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_6i88u")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "Left click to reveal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3" type="MarginContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/3"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/3/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_4fto0")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "Numbers show
+ mines around a tile"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4" type="MarginContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/4"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/4/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_46ftr")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/4/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "Right click to flag"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="5" type="MarginContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/5"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/5/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_voe5m")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/5/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "Eye the 50/50
+once per game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -152.5
+offset_top = -238.0
+offset_right = 152.5
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 64
+text = "Next>"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_e1c41")
+volume_db = -20.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

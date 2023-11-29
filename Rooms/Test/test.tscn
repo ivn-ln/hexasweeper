@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bermy87uyhs6o"]
+[gd_scene load_steps=37 format=3 uid="uid://bermy87uyhs6o"]
 
 [ext_resource type="Script" path="res://Rooms/Test/test.gd" id="1_6pvth"]
 [ext_resource type="PackedScene" uid="uid://ds2tnuohc3nm3" path="res://GCC2D.tscn" id="2_pl5qa"]
@@ -15,7 +15,9 @@
 [ext_resource type="Script" path="res://addons/shaker/shaker.gd" id="12_0x7sc"]
 [ext_resource type="PackedScene" uid="uid://eo0h525y6to8" path="res://GUI/Leaderboard/leaderboard.tscn" id="12_atdac"]
 [ext_resource type="AudioStream" uid="uid://dftb7sfp2royj" path="res://Audio/pluck_002.ogg" id="13_f7e8d"]
+[ext_resource type="Texture2D" uid="uid://dy8ruhoj65v2n" path="res://Sprites/Eye.svg" id="13_ntl0h"]
 [ext_resource type="AudioStream" uid="uid://btli8aeprjwmn" path="res://Audio/bong_001.ogg" id="14_2v435"]
+[ext_resource type="Texture2D" uid="uid://bpwmb4depesp8" path="res://Sprites/cup.png" id="14_nxm50"]
 [ext_resource type="AudioStream" uid="uid://bebafq4wnderq" path="res://Audio/crowd.mp3" id="15_xq062"]
 [ext_resource type="AudioStream" uid="uid://btb0dvixf2uti" path="res://Audio/completed.wav" id="16_1r5gx"]
 [ext_resource type="AudioStream" uid="uid://bn3enev78g7wn" path="res://Audio/select_005.ogg" id="17_i4ptq"]
@@ -84,6 +86,14 @@ shader_parameter/NUM_PARTICLES = 30.0
 shader_parameter/particle_size = 3.0
 shader_parameter/MOD3 = Vector3(0.1031, 0.11369, 0.13787)
 
+[sub_resource type="InputEventKey" id="InputEventKey_mjjer"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_5f8f7"]
+events = [SubResource("InputEventKey_mjjer")]
+
 [sub_resource type="InputEventKey" id="InputEventKey_c5vy8"]
 device = -1
 keycode = 82
@@ -137,6 +147,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Test" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_6pvth")
 cell_size = 64
 set_start_auto = false
@@ -198,6 +209,37 @@ offset_right = 201.0
 offset_bottom = 91.0
 theme_override_font_sizes/font_size = 48
 text = "FPS "
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+z_index = -2
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -104.0
+offset_right = 208.0
+offset_bottom = 232.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.33, 0.33)
+value = 100.0
+fill_mode = 3
+texture_under = ExtResource("13_ntl0h")
+texture_progress = ExtResource("13_ntl0h")
+tint_under = Color(0.309804, 0.309804, 0.309804, 1)
+
+[node name="Button" type="Button" parent="CanvasLayer/TextureProgressBar"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+keep_pressed_outside = true
+shortcut = SubResource("Shortcut_5f8f7")
 
 [node name="Restart" type="Button" parent="CanvasLayer"]
 z_index = -1
@@ -566,6 +608,20 @@ visible = false
 [node name="Leaders" parent="CanvasLayer" instance=ExtResource("12_atdac")]
 visible = false
 
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(144, -336)
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(0, 0, 0, 1)
+
+[node name="Cup" type="Sprite2D" parent="Line2D"]
+visible = false
+texture = ExtResource("14_nxm50")
+
+[node name="Eye" type="Sprite2D" parent="."]
+position = Vector2(648, 1232)
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("13_ntl0h")
+
 [node name="Flame04" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(504, 208)
@@ -608,6 +664,8 @@ volume_db = -10.0
 stream = ExtResource("17_i4ptq")
 volume_db = -20.0
 
+[connection signal="button_down" from="CanvasLayer/TextureProgressBar/Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="CanvasLayer/TextureProgressBar/Button" to="." method="_on_button_button_up"]
 [connection signal="pressed" from="CanvasLayer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Win/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Leaders" to="." method="_on_leaders_pressed"]

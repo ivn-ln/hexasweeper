@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://eo0h525y6to8"]
+[gd_scene load_steps=7 format=3 uid="uid://eo0h525y6to8"]
 
 [ext_resource type="Script" path="res://GUI/Leaderboard/leaderboard.gd" id="1_rdimv"]
 [ext_resource type="Texture2D" uid="uid://d104fmm6nppn" path="res://Sprites/hexagon.svg" id="2_xdxwv"]
+[ext_resource type="AudioStream" uid="uid://btli8aeprjwmn" path="res://Audio/bong_001.ogg" id="3_auefe"]
 
 [sub_resource type="Animation" id="Animation_46wjv"]
 length = 0.001
@@ -41,6 +42,7 @@ _data = {
 }
 
 [node name="Leaders" type="Control"]
+z_index = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -77,6 +79,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 64
 text = "LEADERS"
 horizontal_alignment = 1
@@ -102,32 +105,40 @@ layout_mode = 2
 [node name="LeaderTop" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LeaderTop"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LeaderTop"]
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LeaderTop/HBoxContainer2"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LeaderTop/PanelContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LeaderTop/PanelContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "#"
 
-[node name="VSeparator" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LeaderTop/HBoxContainer2"]
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LeaderTop/PanelContainer/HBoxContainer2"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LeaderTop/HBoxContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LeaderTop/PanelContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
 text = "Name"
 
-[node name="VSeparator2" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LeaderTop/HBoxContainer2"]
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LeaderTop/PanelContainer/HBoxContainer2"]
 visible = false
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LeaderTop/HBoxContainer2"]
+[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LeaderTop/PanelContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Time"
+
+[node name="Spacer3" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LeaderTop"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LeaderTop"]
 layout_mode = 2
@@ -157,6 +168,7 @@ offset_right = -56.0
 offset_bottom = 130.0
 grow_horizontal = 0
 focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "X"
 flat = true
 
@@ -192,6 +204,10 @@ autoplay = "load_spin"
 libraries = {
 "": SubResource("AnimationLibrary_p2vun")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_auefe")
+volume_db = -20.0
 
 [connection signal="tab_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabBar" to="." method="_on_tab_bar_tab_changed"]
 [connection signal="pressed" from="Hide" to="." method="_on_hide_pressed"]

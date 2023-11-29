@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mb8nd6mjum3v"
-path="res://.godot/imported/Lightning.svg-1bc2d628cb9284f611e5624e26560f9c.ctex"
+uid="uid://ch1if5sya4rmk"
+path="res://.godot/imported/moon.png-0ad5d35a994fae8ab720b67c878d53d5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Lightning.svg"
-dest_files=["res://.godot/imported/Lightning.svg-1bc2d628cb9284f611e5624e26560f9c.ctex"]
+source_file="res://Sprites/moon.png"
+dest_files=["res://.godot/imported/moon.png-0ad5d35a994fae8ab720b67c878d53d5.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=21.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

@@ -19,6 +19,25 @@ func _process(delta):
 			$AudioStreamPlayer.volume_db = -90
 	else:
 		$AudioStreamPlayer.volume_db = -20
+	$Panel.self_modulate = RenderingServer.get_default_clear_color()
+	if not Globals.dark_mode:
+		$VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Back.self_modulate = Color.BLACK
+		$VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/AudioButton.self_modulate = Color.BLACK
+		$VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VibrationButton.self_modulate = Color.BLACK
+		$VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DiscoColorsButton.self_modulate = Color.BLACK
+		$VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/AnimationsButton.self_modulate = Color.BLACK
+		$VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ShowTimerButton.self_modulate = Color.BLACK
+		$VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ShowMinesButton.self_modulate = Color.BLACK
+		$VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DarkThemeButton.self_modulate = Color.BLACK
+	else:
+		$VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Back.self_modulate = Color.WHITE
+		$VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/AudioButton.self_modulate = Color.WHITE
+		$VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VibrationButton.self_modulate = Color.WHITE
+		$VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DiscoColorsButton.self_modulate = Color.WHITE
+		$VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/AnimationsButton.self_modulate = Color.WHITE
+		$VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ShowTimerButton.self_modulate = Color.WHITE
+		$VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ShowMinesButton.self_modulate = Color.WHITE
+		$VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DarkThemeButton.self_modulate = Color.WHITE
 
 
 func _on_back_pressed():
@@ -96,3 +115,8 @@ func _on_menu_pressed():
 	_on_back_pressed()
 	$AudioStreamPlayer.play()
 	get_parent().get_parent().get_parent().transition_to_menu()
+
+
+func _on_leaders_pressed():
+	$Leaders.show()
+	$Leaders.update_scores()

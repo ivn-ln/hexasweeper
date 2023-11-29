@@ -20,6 +20,7 @@ boot_splash/fullsize=false
 
 [audio]
 
+buses/channel_disable_threshold_db=-1000.0
 buses/channel_disable_time=5.0
 
 [autoload]

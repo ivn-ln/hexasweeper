@@ -1,7 +1,7 @@
 extends CenterContainer
 
 signal score_submitted
-var score_value = 999.0
+var score_value = 9999
 
 
 func _ready():
@@ -32,7 +32,8 @@ func submit_new_score():
 	if table == 'Hard':
 		table = 'hard'
 	var player_id = $PanelContainer/MarginContainer/VBoxContainer/LineEdit.text
-	print(await SilentWolf.Scores.save_score(player_id, floorf((1 / score_value) * 1000), table, metadata).sw_save_score_complete)
+	var res = floorf((1 / score_value) * 100000 * 1000)/1000
+	await SilentWolf.Scores.save_score(player_id, floorf((1 / score_value) * 100000 * 1000)/1000, table, metadata).sw_save_score_complete
 	score_submitted.emit()
 	hide()
 	$PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Submit.disabled = false

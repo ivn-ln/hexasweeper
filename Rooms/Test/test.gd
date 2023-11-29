@@ -34,10 +34,14 @@ var current_color_palette = color_palette.duplicate()
 var chosen_color
 var inner_timer = 0.0
 var min_camera_zoom = 1.0
+var enable_pointer = false
+@onready var pointer = $Line2D
+var eye_progress = 10000000.0
+var charged_notified = true
 
 
 func _ready():
-	if OS.get_name() == 'Web':
+	if OS.get_name() == 'Android':
 		$CanvasLayer/FireworkBG.hide()
 	match Globals.current_difficulty:
 		'Easy':
@@ -78,6 +82,29 @@ func reset_hud_elements():
 
 
 func _process(delta):
+	var color_class = Color.from_string(chosen_color, Color.WHITE)
+	var color_processed = Color.from_hsv(color_class.h, color_class.s - 0.5, color_class.v + 0.2)
+	if Globals.dark_mode:
+		$CanvasLayer/Mines/Amount/Mines.theme_type_variation = 'DarkTheme'
+		$CanvasLayer/Timer.theme_type_variation = 'DarkTheme'
+		color_processed = Color.from_hsv(color_class.h, color_class.s - 0.5, color_class.v - 0.2)
+		$CanvasLayer/Restart.self_modulate = Color.WHITE
+		$CanvasLayer/PauseButton.self_modulate = Color.WHITE
+	else:
+		$CanvasLayer/Mines/Amount/Mines.theme_type_variation = ''
+		$CanvasLayer/Timer.theme_type_variation = ''
+		$CanvasLayer/Mines/Amount/Mines/TextureRect.self_modulate = Color.BLACK
+		$CanvasLayer/Restart.self_modulate = Color.BLACK
+		$CanvasLayer/PauseButton.self_modulate = Color.BLACK
+	$CanvasLayer/Win/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Restart.self_modulate = color_processed
+	$CanvasLayer/GameOver/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Restart.self_modulate = color_processed
+	$CanvasLayer/Pause/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Menu.self_modulate = color_processed
+	$CanvasLayer/Pause/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/Leaders.self_modulate = color_class
+	$CanvasLayer/Win/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Leaders.self_modulate = color_class
+	pointer.global_position = camera.global_position + ((get_viewport_rect().size/2) - Vector2(get_viewport_rect().size.x - $CanvasLayer/TextureProgressBar.global_position.x, get_viewport_rect().size.y - $CanvasLayer/TextureProgressBar.global_position.y) + Vector2(336/2, 336/2) * 0.33) / camera.zoom
+	if enable_pointer:
+		pointer.points[1] = -pointer.global_position + get_global_mouse_position() 
+		$Eye.global_position = get_global_mouse_position()
 	if not Globals.enable_audio:
 		$AudioStreamPlayer3.volume_db = -90
 		$AudioStreamPlayer.volume_db = -90
@@ -93,8 +120,6 @@ func _process(delta):
 	$CanvasLayer/Mines.visible = Globals.show_mines
 	$CanvasLayer/Timer.visible = Globals.show_timer
 	inner_timer += delta
-	#if Input.is_action_just_pressed("ui_accept"):
-	#	grid_update_treasure_values(cells_array)
 	if Input.is_action_just_pressed("Debug"):
 		Globals.DEBUG = not Globals.DEBUG
 		$CanvasLayer/FPS.visible = Globals.DEBUG
@@ -219,6 +244,11 @@ func _on_cell_pressed(cell):
 		generate_mana(mana_amount, cell)
 		#'Ending generation')
 	chosen_cells.append(cell)
+	eye_progress+=1000000/cells_array.size()/3*1.5
+	#if (eye_progress * 3)/10000 + 33 > 66 and not charged_notified:
+	#	$AudioStreamPlayer5.play()
+	#	charged_notified = true
+	#$CanvasLayer/TextureProgressBar.value = (eye_progress * 3)/10000 + 33
 	#'Checking is cell a mine')
 	exploded_cell = cell
 	if await check_is_cell_mine(cell): return
@@ -328,24 +358,6 @@ func set_colors():
 				c.tile_color = Color.from_string(chosen_color, Color.from_string(color_palette.pick_random(), Color.WHITE))
 			else:
 				create_tween().tween_property(c, 'tile_color', Color.from_string(color_palette.pick_random(), Color.WHITE), 1.0)
-	var color_class = Color.from_string(chosen_color, Color.WHITE)
-	var color_processed = Color.from_hsv(color_class.h, color_class.s - 0.5, color_class.v + 0.2)
-	if Globals.dark_mode:
-		RenderingServer.set_default_clear_color(Color.BLACK)
-		$CanvasLayer/Mines/Amount/Mines.theme_type_variation = 'DarkTheme'
-		$CanvasLayer/Timer.theme_type_variation = 'DarkTheme'
-		color_processed = Color.from_hsv(color_class.h, color_class.s - 0.5, color_class.v - 0.2)
-	else:
-		RenderingServer.set_default_clear_color(Color.WHITE)
-		$CanvasLayer/Mines/Amount/Mines.theme_type_variation = ''
-		$CanvasLayer/Timer.theme_type_variation = ''
-		$CanvasLayer/Mines/Amount/Mines/TextureRect.self_modulate = Color.BLACK
-		$CanvasLayer/Restart.self_modulate = Color.BLACK
-		$CanvasLayer/PauseButton.self_modulate = Color.BLACK
-	$CanvasLayer/Win/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Restart.self_modulate = color_processed
-	$CanvasLayer/GameOver/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Restart.self_modulate = color_processed
-	$CanvasLayer/Pause/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Menu.self_modulate = color_processed
-	$CanvasLayer/Win/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Leaders.self_modulate = color_class
 
 func reset():
 	await reset_camera()
@@ -379,7 +391,10 @@ func reset():
 			await get_tree().create_timer(0.001).timeout
 			should_wait = 0
 		should_wait += 1
+	eye_progress = 1000000
+	$CanvasLayer/TextureProgressBar.value = (eye_progress * 3)/10000 + 33
 	handling_input = true
+	charged_notified = true
 	$CanvasLayer/Restart.show()
 	$CanvasLayer/PauseButton.show()
 	$CanvasLayer/Win/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Leaders.disabled = false
@@ -422,7 +437,6 @@ func cell_reveal_surrounding_treasures(cell):
 
 func cell_get_surrounding_cells(cell):
 	var closest_cells = []
-	var closest_position = 9999.0
 	for c in cells_array:
 		if c == cell:
 			continue
@@ -485,3 +499,36 @@ func _on_submit_score_score_submitted():
 		'Hard':
 			table = 'hard'
 	$CanvasLayer/Leaders.update_scores(table, true)
+
+
+func _on_button_button_down():
+	if (eye_progress * 3)/10000 + 33<66:
+		return
+	enable_pointer = true
+	$Eye.visible = true
+
+
+func _on_button_button_up():
+	if (eye_progress * 3)/10000 + 33<66:
+		return
+	enable_pointer = false
+	pointer.points[1] = pointer.points[0]
+	$Eye.visible = false
+	var closest_cell
+	var nearest_distance = 99999.0
+	for c in cells_array:
+		if c.global_position.distance_to($Eye.global_position+Vector2(-138/2, -138/2)) < nearest_distance:
+			closest_cell = c
+			nearest_distance = c.global_position.distance_to($Eye.global_position)
+	var cell = closest_cell
+	if nearest_distance > 90:
+		return
+	if cell.is_flagged || cell.is_revealed:
+		return
+	eye_progress = 0
+	charged_notified = false
+	$CanvasLayer/TextureProgressBar.value = (eye_progress * 3)/10000 + 33
+	if cell.is_treasure == false:
+		_on_cell_pressed(cell)
+	else:
+		cell.switch_flag()

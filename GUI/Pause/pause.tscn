@@ -1,16 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://chkhypr8v0lao"]
+[gd_scene load_steps=8 format=3 uid="uid://chkhypr8v0lao"]
 
 [ext_resource type="Script" path="res://GUI/Pause/pause.gd" id="1_561p4"]
 [ext_resource type="Texture2D" uid="uid://b0rn5drtulvqt" path="res://Sprites/flag.svg" id="1_fefnc"]
 [ext_resource type="Texture2D" uid="uid://dxc44ss034i8i" path="res://Sprites/3545435.png" id="2_vnl0j"]
 [ext_resource type="AudioStream" uid="uid://btli8aeprjwmn" path="res://Audio/bong_001.ogg" id="3_c0wbw"]
+[ext_resource type="PackedScene" uid="uid://eo0h525y6to8" path="res://GUI/Leaderboard/leaderboard.tscn" id="5_65gmo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pd6xu"]
 bg_color = Color(1, 1, 1, 1)
 shadow_offset = Vector2(-4, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5lut6"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(1, 1, 1, 0)
 
 [node name="Pause" type="Control"]
 process_mode = 3
@@ -32,13 +33,14 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pd6xu")
 
 [node name="Back" type="Button" parent="."]
+visible = false
+self_modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(55, 87)
 layout_mode = 0
 offset_left = 8.0
 offset_right = 63.0
 offset_bottom = 87.0
 focus_mode = 0
-theme_override_font_sizes/font_size = 64
 icon = ExtResource("2_vnl0j")
 flat = true
 expand_icon = true
@@ -192,6 +194,29 @@ text = "Menu"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="Spacer11" type="Control" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Leaders" type="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 72
+text = "Leaderboard"
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="Spacer" type="Control" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
@@ -277,9 +302,14 @@ layout_mode = 2
 stream = ExtResource("3_c0wbw")
 volume_db = -20.0
 
+[node name="Leaders" parent="." instance=ExtResource("5_65gmo")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/Leaders" to="." method="_on_leaders_pressed"]
 [connection signal="toggled" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/AudioButton" to="." method="_on_audio_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VibrationButton" to="." method="_on_vibration_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DiscoColorsButton" to="." method="_on_disco_colors_button_toggled"]

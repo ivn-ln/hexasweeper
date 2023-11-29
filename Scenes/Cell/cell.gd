@@ -49,8 +49,7 @@ func _process(delta):
 		$AudioStreamPlayer4.volume_db = -90
 	else:
 		$AudioStreamPlayer.volume_db = -20
-		if OS.get_name() == 'Android':
-			$AudioStreamPlayer.volume_db = 0
+		$AudioStreamPlayer.volume_db = -20
 		$AudioStreamPlayer2.volume_db = -20
 		$AudioStreamPlayer4.volume_db = -20
 	$GPUParticles2D.process_material.scale_max = scale.x * 6 * 1.5
@@ -174,7 +173,7 @@ func switch_flag():
 	if not is_flagged:
 		$AudioStreamPlayer2.pitch_scale = randf_range(1.2, 1.3)
 		if Globals.enable_animations:
-			create_tween().tween_property($MainPivot/PivotFlag, 'scale', Vector2(1, 1), 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+			create_tween().tween_property($MainPivot/PivotFlag, 'scale', Vector2(1, 1), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 		else:
 			$MainPivot/PivotFlag.scale = Vector2(1, 1)
 		is_flagged = true

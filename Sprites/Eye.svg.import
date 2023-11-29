@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mb8nd6mjum3v"
-path="res://.godot/imported/Lightning.svg-1bc2d628cb9284f611e5624e26560f9c.ctex"
+uid="uid://dy8ruhoj65v2n"
+path="res://.godot/imported/Eye.svg-1ad8e6dc50f4c059037a968209f88867.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Lightning.svg"
-dest_files=["res://.godot/imported/Lightning.svg-1bc2d628cb9284f611e5624e26560f9c.ctex"]
+source_file="res://Sprites/Eye.svg"
+dest_files=["res://.godot/imported/Eye.svg-1ad8e6dc50f4c059037a968209f88867.ctex"]
 
 [params]
 

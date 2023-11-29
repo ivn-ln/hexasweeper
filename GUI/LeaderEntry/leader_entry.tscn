@@ -1,15 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0ulf2cwv508i"]
+[gd_scene load_steps=3 format=3 uid="uid://c0ulf2cwv508i"]
 
 [ext_resource type="Script" path="res://GUI/LeaderEntry/leader_entry.gd" id="1_qoskj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8dk61"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [node name="PanelContainer" type="PanelContainer"]
 offset_right = 309.0
 offset_bottom = 89.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8dk61")
 script = ExtResource("1_qoskj")
 
 [node name="LeaderEntry" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Spacer3" type="Control" parent="LeaderEntry"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="LeaderEntry"]
 layout_mode = 2
@@ -27,6 +40,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
+text = "123123123"
 visible_characters = 12
 
 [node name="VSeparator2" type="VSeparator" parent="LeaderEntry/HBoxContainer2"]

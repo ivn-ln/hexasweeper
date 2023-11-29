@@ -5,8 +5,17 @@ var leader_entry = preload('res://GUI/LeaderEntry/leader_entry.tscn')
 var leader_array = []
 
 
-func _ready():
-	pass
+func _process(delta):
+	if Globals.dark_mode:
+		$MarginContainer/PanelContainer.self_modulate = Color.BLACK
+		$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Label.self_modulate = Color.WHITE
+		$Hide.self_modulate = Color.WHITE
+		$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LeaderTop/PanelContainer.self_modulate = Color.DIM_GRAY
+	else:
+		$MarginContainer/PanelContainer.self_modulate = Color.WHITE
+		$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Label.self_modulate = Color.BLACK
+		$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LeaderTop/PanelContainer.self_modulate = Color.WHITE
+		$Hide.self_modulate = Color.BLACK
 
 func update_scores(scoreboard = 'main', force_change=false):
 	if force_change:
@@ -37,16 +46,18 @@ func update_scores_view(scores_array):
 		if s['player_name'] == Globals.player_id:
 			leader_entry_inst.modulate = Color.from_string('00cf7f', Color.WHITE)
 		leader_entry_inst.player_name = s['metadata']['display_name']
-		leader_entry_inst.score = str(floorf((1 / (s['score']) * 1000 * 1000))/1000)
+		leader_entry_inst.score = str(floorf(1/s['score'] * 100000*1000)/1000)
 		leader_array.append(leader_entry_inst)
 		$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer.add_child(leader_entry_inst)
 
 
 func _on_hide_pressed():
+	$AudioStreamPlayer.play()
 	hide()
 
 
 func _on_tab_bar_tab_changed(tab):
+	$AudioStreamPlayer.play()
 	$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabBar.set_tab_disabled(0, true)
 	$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabBar.set_tab_disabled(1, true)
 	$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabBar.set_tab_disabled(2, true)
